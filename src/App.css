@@ -16,6 +16,8 @@ body{
   overflow-x: scroll;
   gap:1em;
   scroll-behavior: smooth;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 .hour{
   display: flex;
@@ -23,6 +25,9 @@ body{
   overflow-x: scroll;
   gap:1em;
   scroll-behavior: smooth;
+  
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 .weekday-div{
   background-color: rgb(120, 231, 144);
@@ -61,8 +66,35 @@ body{
 }
 .App-parent{
   box-sizing: border-box;
-  width: 400px;
+  width: 60vw;
 
   height: 100%;
 }
-
+.App{
+  padding-top: 3em;
+  display: flex;
+  flex-direction: column;
+  gap:2em;
+  align-items: center;
+}
+.App-child{
+  box-sizing: border-box;
+  background-color: rgb(50, 153, 153);
+  border-radius: 10px;
+  width: 350px;
+  color: white;
+}
+form #search{
+  width: 100px;
+}
+#icon{
+  font-size: 2em;
+}
+#cover-icon{
+  font-size: 1.5em;
+}
+@media screen and (max-width:800px){
+  .App-parent{
+    width: 95vw;
+  }
+}

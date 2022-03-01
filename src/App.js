@@ -94,11 +94,14 @@ export default class App extends Component {
       <div className='App-parent'>
 
         <div className='App'>
-          <h1 style={{marginTop: 0}}>{this.state.cityName? this.state.cityName: 'Weather App ⛅'} </h1>
-          <Search onCityNameChanged={this.setNewCity} />
-          <h1>{this.state.currtemp?Math.ceil(this.state.currtemp)+" ℃":''}</h1>
-          <h2>{this.state.currMax?Math.ceil(this.state.currMax)+" ℃"+'/'+Math.floor(this.state.currMin) +" ℃":''}</h2>
+        <Search onCityNameChanged={this.setNewCity} />
+          <div className='App-child'>
+          <h1>{this.state.cityName? this.state.cityName: 'Weather App ⛅'} </h1>
+          
+          <h1>{this.state.currtemp?Math.ceil(this.state.currtemp)+"°C":''}</h1>
+          <h2>{this.state.currMax?Math.ceil(this.state.currMax)+"°C"+'/'+Math.floor(this.state.currMin) +"°C":''}</h2>
           <h2>{this.state.currentCondition} </h2>
+          </div>
         </div>
         
         <h4>{this.state.cityName? 'Hourly Weather Forecast': ''}</h4>
@@ -107,8 +110,8 @@ export default class App extends Component {
           {this.state.hours.map((hour)=>(
           <div className='hour-div'>
             <p>{this.cropTime(hour.datetime)}</p>
-            <p>{this.coverIcon(hour.datetime)}</p>
-            <p>{hour.temp} ℃</p>
+            <p id="cover-icon">{this.coverIcon(hour.datetime)}</p>
+            <p>{Math.ceil(hour.temp)}°C</p>
             <p>{hour.conditions}</p>
           </div>
           ))}
@@ -119,9 +122,9 @@ export default class App extends Component {
         <div className='weekday'> 
           {this.state.weekDays.map((weekday)=>(
           <div className='weekday-div'>
-            <p>{this.setIcon(weekday.icon)}</p>
+            <p id="icon">{this.setIcon(weekday.icon)}</p>
             <p>{this.dateTimeFunc(weekday.datetime)}</p>
-            <p>{Math.ceil(weekday.tempmax)} / {Math.floor(weekday.tempmin)} ℃</p>
+            <p>{Math.ceil(weekday.tempmax)}°C/{Math.floor(weekday.tempmin)}°C</p>
             <p> {weekday.conditions}</p>
 
           </div>

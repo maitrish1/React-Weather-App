@@ -25,13 +25,13 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div>
-          <form action="#" onSubmit={this.searchCity}>
-              <input type="text" placeholder='Enter city' value={this.state.cityName} onChange={this.handleChange} />
+      
+          <form  action="#" onSubmit={this.searchCity}>
+              <input id='search' type="text" placeholder='Enter city' value={this.state.cityName} onChange={this.handleChange} />
               <input type="submit" value='Search'/>
           </form>
           
-      </div>
+      
     )
   }
 }
