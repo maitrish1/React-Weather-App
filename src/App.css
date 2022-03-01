@@ -3,9 +3,13 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(./components/sunny1.jpg);
-  background-size: 100vw 130vh;
-  background-repeat: no-repeat;
+  background: url(./components/sunny1.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+
 }
 *{
   text-align: center;
@@ -22,32 +26,60 @@ body{
   padding-left: 1.5em;
   padding-right: 1.5em;
 }
-.hour{
-  display: flex;
-  height: 20vh;
-  overflow-x: scroll;
-  gap:1em;
-  scroll-behavior: smooth;
-  
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
 .weekday-div{
-  background-color: rgb(120, 231, 144);
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 50%;
   width: 50vw;
   border-radius: 10px;
+  position: relative;
+  z-index: 0;
 }
+.weekday-div::after{
+  content: "";
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  z-index: -1;
+  top:0;
+  left:0;
+  border-radius: 20px;
+}
+.hour{
+  display: flex;
+  height: 20vh;
+  overflow-x: scroll;
+  gap:1em;
+  scroll-behavior: smooth;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
 .hour-div{
-  background-color: rgb(28, 168, 168);
+ color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   height: 20vh;
   border-radius: 10px;
+  position: relative;
+  z-index: 0;
+}
+.hour-div::after{
+  content: "";
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  z-index: -1;
+  top:0;
+  left:0;
+  border-radius: 20px;
 }
 .hour-div p{
   margin: 0px;
@@ -71,6 +103,7 @@ body{
   box-sizing: border-box;
   width: 60vw;
 
+  
   height: 100%;
 }
 
@@ -81,20 +114,45 @@ body{
   gap:2em;
   align-items: center;
   justify-content: space-evenly;
+  
 }
 .App-child-one{
-  box-sizing: border-box;
-  background-color: rgb(50, 153, 153);
+  border-radius: 10px;
+  width: 350px;
+  color: white;
+  position: relative;
+  z-index: 0;
+}
+.App-child-one::after{
+  content: "";
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+  top:0;
+  left:0;
+  border-radius: 20px;
+}
+.App-child-two{
+  position: relative;
+  z-index: 0;
   border-radius: 10px;
   width: 350px;
   color: white;
 }
-.App-child-two{
-  box-sizing: border-box;
-  background-color: rgb(50, 153, 153);
-  border-radius: 10px;
-  width: 350px;
-  color: white;
+.App-child-two::after{
+  content: "";
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+  top:0;
+  left:0;
+  border-radius: 20px;
 }
 form #search{
   width: 100px;
@@ -117,12 +175,4 @@ form #search{
   justify-content: space-evenly;
   }
   
-}
-@media screen and (max-width:450px){
-  body{
-    background-position: center center;
-    background-size: 100vw 100vh;
-    
-    background: url(./components/sunny2.jpg);
-  }
 }

@@ -164,6 +164,7 @@ export default class App extends Component {
             <h2>{this.state.uv?this.setUv(this.state.uv):""} </h2>
             <h2>{this.state.humidity?this.state.humidity+"% Humidity": ''} </h2>
           </div>
+          
         </div>
         
         <h4>{this.state.cityName? 'Hourly Weather Forecast': ''}</h4>
