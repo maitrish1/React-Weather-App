@@ -18,7 +18,10 @@ export default class App extends Component {
       hours:[],
       currMax:"",
       currMin:"",
-
+      uv:"",
+      visibility:"",
+      humidity:"",
+      feelsLike:""
     }
     navigator.geolocation.getCurrentPosition((position)=>{
       const coords = position.coords;
@@ -43,6 +46,7 @@ export default class App extends Component {
     const res=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=AQCU5XN55DVKZM6KKZ3YWEYTQ&contentType=json`)
     const data= await res.json()
     
+    console.log(data.days[0])
     
     this.setState({
       currtemp:data.currentConditions.temp,
@@ -52,7 +56,11 @@ export default class App extends Component {
       currentCondition:data.currentConditions.conditions,
       hours:data.days[0].hours,
       currMax:data.days[0].tempmax,
-      currMin:data.days[0].tempmin
+      currMin:data.days[0].tempmin,
+      feelsLike:data.days[0].feelslike,
+      uv:data.days[0].uvindex,
+      visibility:data.days[0].visibility,
+      humidity:data.days[0].humidity
     })
   }
 
@@ -80,7 +88,11 @@ export default class App extends Component {
       currentCondition:data.currentConditions.conditions,
       hours:data.days[0].hours,
       currMax:data.days[0].tempmax,
-      currMin:data.days[0].tempmin
+      currMin:data.days[0].tempmin,
+      feelsLike:data.days[0].feelslike,
+      uv:data.days[0].uvindex,
+      visibility:data.days[0].visibility,
+      humidity:data.days[0].humidity
     })
     
   }
@@ -125,18 +137,32 @@ export default class App extends Component {
     else if(icon=='clear-night') return '🌕'
   }
 
+
+  setUv=(uv)=>{
+    if(uv<=2) return "UV Index is Low. Enjoy Outdoors!"
+    else if(uv>2 && uv<=5) return "UV Index is Moderate. Cover Up and Enjoy Outdoors!"
+    else if(uv>5 && uv<=7) return "UV Index is High. Remember to Cover yourself up!"
+    else if(uv>7 && uv<=9) return "UV Index is very High. Prolonged time outdoors might cause sunburns."
+    else if(uv>9) return "UV Index Is Extremely High. Don't go out unless absolutely necessary."
+  }
+
   render() {
     return (
       <div className='App-parent'>
-
-        <div className='App'>
         <Search onCityNameChanged={this.setNewCity} />
-          <div className='App-child'>
-          <h1>{this.state.cityName? this.state.cityName: 'Weather App ⛅'} </h1>
-          
-          <h1>{this.state.currtemp?Math.ceil(this.state.currtemp)+"°C":''}</h1>
-          <h2>{this.state.currMax?Math.ceil(this.state.currMax)+"°C"+'/'+Math.floor(this.state.currMin) +"°C":''}</h2>
-          <h2>{this.state.currentCondition} </h2>
+        <div className='App'>
+        
+          <div className='App-child-one'>
+            <h1>{this.state.cityName? this.state.cityName: 'Weather App ⛅'} </h1>
+            <h1>{this.state.currtemp?Math.ceil(this.state.currtemp)+"°C":''}</h1>
+            <h2>{this.state.currMax?Math.ceil(this.state.currMax)+"°C"+'/'+Math.floor(this.state.currMin) +"°C":''}</h2>
+            <h2>{this.state.currentCondition} </h2>
+          </div>
+
+          <div className='App-child-two'>
+            <h1>{this.state.feelsLike?this.state.feelsLike+"°C":''}</h1>
+            <h2>{this.state.uv?this.setUv(this.state.uv):""} </h2>
+            <h2>{this.state.humidity?this.state.humidity+"% Humidity": ''} </h2>
           </div>
         </div>
         
