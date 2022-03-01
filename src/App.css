@@ -1,4 +1,6 @@
-
+#arrows{
+  font-size: 2em;
+}
 body{
   display: flex;
   align-items: center;

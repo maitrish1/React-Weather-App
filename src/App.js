@@ -164,12 +164,13 @@ export default class App extends Component {
             <h2>{this.state.uv?this.setUv(this.state.uv):""} </h2>
             <h2>{this.state.humidity?this.state.humidity+"% Humidity": ''} </h2>
           </div>
-          
+
         </div>
         
         <h4>{this.state.cityName? 'Hourly Weather Forecast': ''}</h4>
 
         <div className='hour'> 
+        <p id="arrows">{this.state.cityName? '⬅️': ''}</p>
           {this.state.hours.map((hour)=>(
           <div className='hour-div'>
             <p>{this.cropTime(hour.datetime)}</p>
@@ -178,11 +179,13 @@ export default class App extends Component {
             <p>{hour.conditions}</p>
           </div>
           ))}
+          <p id="arrows">{this.state.cityName? '➡️': ''}</p>
         </div>
 
         <h4>{this.state.cityName? '14-Day Weather Forecast': ''}</h4>
 
         <div className='weekday'> 
+        <p id="arrows">{this.state.cityName? '⬅️': ''}</p>
           {this.state.weekDays.map((weekday)=>(
           <div className='weekday-div'>
             <p id="icon">{this.setIcon(weekday.icon)}</p>
@@ -192,6 +195,7 @@ export default class App extends Component {
 
           </div>
           ))}
+           <p id="arrows">{this.state.cityName? '➡️': ''}</p>
         </div>
 
       </div>
