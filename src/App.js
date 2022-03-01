@@ -4,6 +4,7 @@ import Search from './components/Search';
 import { type } from '@testing-library/user-event/dist/type';
 
 
+
 export default class App extends Component {
   constructor(){
     super()
@@ -18,6 +19,40 @@ export default class App extends Component {
       currMax:"",
       currMin:""
     }
+    navigator.geolocation.getCurrentPosition((position)=>{
+      const coords = position.coords;
+            const lat = coords.latitude;
+            const long = coords.longitude;
+            // console.log(lat, long);
+            this.fetchWeatherByLatLong(lat, long);
+    })
+  }
+  
+
+  fetchWeatherByLatLong=async(lat,long)=>{
+    const res=await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.6e70b3d6826ddf016c55137a6409fa19&lat=$${lat}&lon=${long}&format=json`)
+    const data= await res.json()
+    console.log(data.address.county)
+    this.setNewCityfromLatLong(data.address.county)
+  }
+
+
+
+  setNewCityfromLatLong=async(city)=>{
+    const res=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=AQCU5XN55DVKZM6KKZ3YWEYTQ&contentType=json`)
+    const data= await res.json()
+    console.log(city)
+    
+    this.setState({
+      currtemp:data.currentConditions.temp,
+      currDesc:data.description,
+      weekDays:data.days,
+      cityName:data.resolvedAddress,
+      currentCondition:data.currentConditions.conditions,
+      hours:data.days[0].hours,
+      currMax:data.days[0].tempmax,
+      currMin:data.days[0].tempmin
+    })
   }
 
 
