@@ -160,7 +160,7 @@ export default class App extends Component {
           </div>
 
           <div className='App-child-two'>
-            <h1>{this.state.feelsLike?this.state.feelsLike+"°C":''}</h1>
+            <h1>{this.state.feelsLike?"Feels Like "+this.state.feelsLike+"°C":''}</h1>
             <h2>{this.state.uv?this.setUv(this.state.uv):""} </h2>
             <h2>{this.state.humidity?this.state.humidity+"% Humidity": ''} </h2>
           </div>

@@ -3,6 +3,9 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url(./components/sunny1.jpg);
+  background-size: 100vw 130vh;
+  background-repeat: no-repeat;
 }
 *{
   text-align: center;
@@ -112,5 +115,14 @@ form #search{
   gap:2em;
   align-items: center;
   justify-content: space-evenly;
+  }
+  
+}
+@media screen and (max-width:450px){
+  body{
+    background-position: center center;
+    background-size: 100vw 100vh;
+    
+    background: url(./components/sunny2.jpg);
   }
 }
