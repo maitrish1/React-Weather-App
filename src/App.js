@@ -17,7 +17,8 @@ export default class App extends Component {
       currentCondition:"",
       hours:[],
       currMax:"",
-      currMin:""
+      currMin:"",
+
     }
     navigator.geolocation.getCurrentPosition((position)=>{
       const coords = position.coords;
@@ -32,8 +33,8 @@ export default class App extends Component {
   fetchWeatherByLatLong=async(lat,long)=>{
     const res=await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.6e70b3d6826ddf016c55137a6409fa19&lat=$${lat}&lon=${long}&format=json`)
     const data= await res.json()
-    console.log(data.address.county)
-    this.setNewCityfromLatLong(data.address.county)
+    console.log(data.address.state_district)
+    this.setNewCityfromLatLong(data.address.state_district)
   }
 
 
@@ -41,7 +42,7 @@ export default class App extends Component {
   setNewCityfromLatLong=async(city)=>{
     const res=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=AQCU5XN55DVKZM6KKZ3YWEYTQ&contentType=json`)
     const data= await res.json()
-    console.log(city)
+    
     
     this.setState({
       currtemp:data.currentConditions.temp,
